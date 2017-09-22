@@ -1,55 +1,50 @@
-## Website Performance Optimization portfolio project
 
-Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
+ресурс ngrok для удаленного подключения у меня не запускался никаким способом, поэтому сайт я выложила в интернет на бесплатный аккаунт hostinger:
 
-To get started, check out the repository and inspect the code.
+http://electromir.96.lt/index.html
 
-### Getting started
+В соответствии с онлайн курсом Udemy выполнила следующее:
+Удалила лишний комментарий из index.html строка-10 в исходном файле;
 
-#### Part 1: Optimize PageSpeed Insights score for index.html
+<link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">- удалила эту строку при тестировании в интернете https://developers.google.com/ скачала шрифты и подключила их в теге <style>…</style>
 
-Some useful tips to help you get started:
+<link href="css/style.css" rel="stylesheet"> - содержимое минифицировала при помощи онлайн ресурса csscompressor.com примерно на 30 % и вставила в теги <style>…</style> Удалила <link> из подключения.
 
-1. Check out the repository
-1. To inspect the site on your phone, you can run a local server
+<link href="css/print.css" rel="stylesheet"> - добавила атрибут  media="print" чтобы ресурс скачивался только в случае печаnи.
 
-  ```bash
-  $> cd /path/to/your-project-folder
-  $> python -m SimpleHTTPServer 8080
-  ```
+<script src="http://www.google-analytics.com/analytics.js"></script> добавила атрибут async
 
-1. Open a browser and visit localhost:8080
-1. Download and install [ngrok](https://ngrok.com/) to the top-level of your project directory to make your local server accessible remotely.
+<script async src="js/perfmatters.js"></script> - удалила коментарии и минифицировала при помощи jscompress.com. Переименовала в perfmatters.min.js
 
-  ``` bash
-  $> cd /path/to/your-project-folder
-  $> ./ngrok http 8080
-  ```
+Вставила на страницу информацию о себе и фото в соответствии с требованиями ДЗ
 
-1. Copy the public URL ngrok gives you and try running it through PageSpeed Insights! Optional: [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
+В блоке <div class="content"> перешла по ссылкам и сохранила все изображения в папку img, заменила ссылки сохраненными изображениями.
+Все изображения оптимизировала при помощи сайта optimizilla.com
 
-Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
+Блок <script> содержащий
+      (function(w,g){w['GoogleAnalyticsObject']=g.....  удалила все пробелы внутри, вынесла в самый конец страницы.
+      
+Изменения внесенные в index.html внесла и в остальные файлы:
 
-#### Part 2: Optimize Frames per Second in pizza.html
+project-2048.html, project-mobile.html, project-webperf.html в этих 3 файлах был пропущен закрывающий тег дива с классом "container"- устранила ошибку.
 
-To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
+При помощи мобильного телефона(Android) и chrome://inspect/#devices
+в TIMELINE проверила порядок и скорость загрузки критических ресурсов.
 
-You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
+Для Пицца --- pizza.html
 
-### Optimization Tips and Tricks
-* [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
-* [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
-* [Optimizing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path.html "optimize the crp!")
-* [Avoiding Rendering Blocking CSS](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css.html "render blocking css")
-* [Optimizing JavaScript](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript.html "javascript")
-* [Measuring with Navigation Timing](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp.html "nav timing api"). We didn't cover the Navigation Timing API in the first two lessons but it's an incredibly useful tool for automated page profiling. I highly recommend reading.
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/eliminate-downloads.html">The fewer the downloads, the better</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer.html">Reduce the size of text</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization.html">Optimize images</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching.html">HTTP caching</a>
+<html > добавила атрибут lang="en"
+В <head> добавила мета теги:
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-### Customization with Bootstrap
-The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> framework. All custom styles are in `dist/css/portfolio.css` in the portfolio repo.
+Соединила и перенесла лист стилей и лист сеток будстрапа в тег <style>…</style> испектируя страницу в нескольких браузерах и просматривая исходный код страницы вычленила и удалила неиспользуемые стили. Удалила теги <link>, которые подключали стили, из подключения к странице pizza.html. содержимое минифицировала при помощи онлайн ресурса csscompressor.com.
+Удалила html комментарий и большое количество табов и пробелов вручную.
 
-* <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
-* <a href="http://getbootstrap.com/components/">Bootstrap's Components</a>
+<input id="sizeSlider"> имел ошибочно поставленный закрывающий тег. Удалила закрывающий тег.
+
+<script type="text/javascript" src="js/main.js"></script> в файле удалила комментарии, минифицировала и переименовала в main.min.js. добавила атрибут asynk
+
+Изображения оптимизировала при помощи сайта optimizilla.com и некоторые сделала соответствующего размера занимаемого в пикселях на странице.
+
+ .htaccess добавила Gzip- сжатие и кеширование.
